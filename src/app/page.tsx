@@ -90,15 +90,13 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col lg:flex-row">
-      {/* Mobile Sidebar Overlay */}
+      
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
-
-      {/* Left Sidebar */}
       <div className={`
         fixed lg:static inset-y-0 left-0 z-50 w-64 lg:w-16 xl:w-20
         bg-white shadow-lg lg:shadow-sm border-r border-gray-100
@@ -106,7 +104,7 @@ const Dashboard = () => {
         lg:translate-x-0 transition-transform duration-300 ease-in-out
         lg:flex-shrink-0
       `}>
-        {/* Mobile Header */}
+      
         <div className="lg:hidden flex items-center justify-between p-4 border-b border-gray-100">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-lg flex items-center justify-center">
@@ -123,14 +121,13 @@ const Dashboard = () => {
         </div>
 
         <div className="flex flex-col h-full py-4 lg:py-6">
-          {/* Desktop Logo */}
+         
           <div className="hidden lg:flex justify-center mb-4">
             <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-lg flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
           </div>
 
-          {/* Profile Avatar */}
           <div className="hidden lg:flex justify-center mb-8">
             <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden border-2 border-gray-300">
               <Image
@@ -143,14 +140,12 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Main Navigation Items */}
           <nav className="flex-1 px-2 lg:px-2">
             <ul className="space-y-2 lg:space-y-3">
               {mainNavigationItems.map(renderNavigationButton)}
             </ul>
           </nav>
 
-          {/* Bottom Navigation Items */}
           <nav className="px-2 lg:px-2 pb-4">
             <ul className="space-y-2 lg:space-y-3">
               {bottomNavigationItems.map(renderNavigationButton)}
@@ -159,15 +154,12 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Main Content Area */}
       <div className="flex-1 p-4 lg:p-6">
-        {/* Main Container */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 h-full flex flex-col">
           
-          {/* Header */}
           <div className="bg-white border-b border-gray-100 px-4 lg:px-6 xl:px-8 py-3 lg:py-4 flex-shrink-0 rounded-t-2xl">
             <div className="flex items-center justify-between">
-              {/* Left Section */}
+         
               <div className="flex items-center space-x-3 flex-1">
                 <button
                   onClick={() => setIsSidebarOpen(true)}
@@ -182,7 +174,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              {/* Mobile Toggle Buttons */}
+           
               <div className="flex md:hidden items-center space-x-1">
                 <button
                   onClick={() => setCurrentView('chat')}
@@ -200,7 +192,7 @@ const Dashboard = () => {
                 </button>
               </div>
 
-              {/* Desktop Action Buttons */}
+              
               <div className="hidden xl:flex items-center space-x-3">
                 <button className="px-4 py-2 text-base text-gray-600 font-medium hover:bg-gray-50 rounded-lg 
                 transition-colors">
@@ -213,7 +205,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Progress Steps */}
+            
             <div className="mt-4 overflow-x-auto">
               <div className="flex items-center justify-center space-x-3 lg:space-x-8 min-w-max px-2">
                 {progressSteps.map((step, index) => (
@@ -236,7 +228,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Main Content - Chat and Form Components */}
+       
           <div className="flex-1 flex flex-col xl:flex-row">
             <Chat currentView={currentView} />
             <Form currentView={currentView} />
