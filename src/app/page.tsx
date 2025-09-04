@@ -182,7 +182,7 @@ const Dashboard: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex md:hidden items-center space-x-1">
+              <div className="flex xl:hidden items-center space-x-1">
                 <button
                   onClick={() => setCurrentView('chat')}
                   className={`p-2 rounded-lg transition-colors duration-200 flex items-center
@@ -199,7 +199,7 @@ const Dashboard: React.FC = () => {
                 </button>
               </div>
 
-              <div className="hidden xl:flex items-center space-x-3">
+              <div className="hidden lg:flex items-center space-x-3">
                 <button className="px-4 py-2 text-base text-gray-600 font-medium hover:bg-gray-50 rounded-lg 
                 transition-colors">
                   Save
