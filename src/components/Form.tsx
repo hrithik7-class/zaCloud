@@ -1,12 +1,11 @@
 import React from 'react'
 import { ChevronDown, ArrowRight } from 'lucide-react'
 
-interface FromProps {
+interface FormProps {
   currentView: string
 }
 
-
-const Form: React.FC<FromProps> = ({ currentView })=> {
+const Form: React.FC<FormProps> = ({ currentView }) => {
   return (
     <div className={`
       xl:w-1/2 bg-gray-50 h-[calc(100vh-200px)] lg:h-[calc(100vh-220px)] overflow-y-auto order-2

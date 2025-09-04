@@ -21,14 +21,26 @@ import Image from 'next/image'
 import Chat from '@/components/Chat'
 import Form from '@/components/Form'
 
-const Dashboard = () => {
-  const [activeNav, setActiveNav] = useState('home')
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [currentView, setCurrentView] = useState('chat')
-  const [activeStep, setActiveStep] = useState('who')
+// TypeScript interfaces
+interface NavigationItem {
+  id: string
+  icon: React.ComponentType<{ className?: string }>
+  label: string
+}
+
+interface ProgressStep {
+  id: string
+  label: string
+}
+
+const Dashboard: React.FC = () => {
+  const [activeNav, setActiveNav] = useState<string>('home')
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
+  const [currentView, setCurrentView] = useState<string>('chat')
+  const [activeStep, setActiveStep] = useState<string>('who')
 
   // Main navigation items (Home to Mail)
-  const mainNavigationItems = [
+  const mainNavigationItems: NavigationItem[] = [
     { id: 'home', icon: Home, label: 'Home' },
     { id: 'rocket', icon: Rocket, label: 'Campaigns' },
     { id: 'documents', icon: FileText, label: 'Documents' },
@@ -38,19 +50,19 @@ const Dashboard = () => {
   ]
 
   // Bottom navigation items (Settings and Logout)
-  const bottomNavigationItems = [
+  const bottomNavigationItems: NavigationItem[] = [
     { id: 'settings', icon: Settings, label: 'Settings' },
     { id: 'logout', icon: LogOut, label: 'Logout' },
   ]
 
-  const progressSteps = [
+  const progressSteps: ProgressStep[] = [
     { id: 'who', label: 'Who' },
     { id: 'what', label: 'What/Why' },
     { id: 'where', label: 'Where' },
     { id: 'when', label: 'When' },
   ]
 
-  const renderNavigationButton = (item :any) => {
+  const renderNavigationButton = (item: NavigationItem) => {
     const Icon = item.icon
     const isActive = activeNav === item.id
 
@@ -90,13 +102,13 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col lg:flex-row">
-      
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
+      
       <div className={`
         fixed lg:static inset-y-0 left-0 z-50 w-64 lg:w-16 xl:w-20
         bg-white shadow-lg lg:shadow-sm border-r border-gray-100
@@ -104,7 +116,6 @@ const Dashboard = () => {
         lg:translate-x-0 transition-transform duration-300 ease-in-out
         lg:flex-shrink-0
       `}>
-      
         <div className="lg:hidden flex items-center justify-between p-4 border-b border-gray-100">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-lg flex items-center justify-center">
@@ -121,7 +132,6 @@ const Dashboard = () => {
         </div>
 
         <div className="flex flex-col h-full py-4 lg:py-6">
-         
           <div className="hidden lg:flex justify-center mb-4">
             <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-lg flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
@@ -156,10 +166,8 @@ const Dashboard = () => {
 
       <div className="flex-1 p-4 lg:p-6">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 h-full flex flex-col">
-          
           <div className="bg-white border-b border-gray-100 px-4 lg:px-6 xl:px-8 py-3 lg:py-4 flex-shrink-0 rounded-t-2xl">
             <div className="flex items-center justify-between">
-         
               <div className="flex items-center space-x-3 flex-1">
                 <button
                   onClick={() => setIsSidebarOpen(true)}
@@ -174,7 +182,6 @@ const Dashboard = () => {
                 </div>
               </div>
 
-           
               <div className="flex md:hidden items-center space-x-1">
                 <button
                   onClick={() => setCurrentView('chat')}
@@ -192,7 +199,6 @@ const Dashboard = () => {
                 </button>
               </div>
 
-              
               <div className="hidden xl:flex items-center space-x-3">
                 <button className="px-4 py-2 text-base text-gray-600 font-medium hover:bg-gray-50 rounded-lg 
                 transition-colors">
@@ -205,10 +211,9 @@ const Dashboard = () => {
               </div>
             </div>
 
-            
             <div className="mt-4 overflow-x-auto">
               <div className="flex items-center justify-center space-x-3 lg:space-x-8 min-w-max px-2">
-                {progressSteps.map((step) => (
+                {progressSteps.map((step: ProgressStep) => (
                   <div key={step.id} className="flex items-center">
                     <div className="flex flex-col items-center">
                       <button
@@ -228,7 +233,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-       
           <div className="flex-1 flex flex-col xl:flex-row">
             <Chat currentView={currentView} />
             <Form currentView={currentView} />
