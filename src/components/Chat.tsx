@@ -1,7 +1,11 @@
 import React from 'react'
 import { Sparkles, Copy, RotateCcw, Search, Mic } from 'lucide-react'
 
-const Chat = ({ currentView }:any) => {
+interface ChatProps {
+  currentView: string
+}
+
+const Chat: React.FC<ChatProps> = ({ currentView })=>  {
   return (
     <div className={`
       xl:w-1/2 bg-white xl:border-r border-gray-100 flex flex-col 
@@ -21,7 +25,7 @@ const Chat = ({ currentView }:any) => {
         <div className="space-y-4 lg:space-y-6">
          
           <div>
-            <p className="text-sm lg:text-base text-gray-700 mb-2">Hello I'm Oslo. Tell me what's on your mind</p>
+            <p className="text-sm lg:text-base text-gray-700 mb-2">Hello I&apos;m Oslo. Tell me what&apos;s on your mind</p>
             
             
             <div className="flex space-x-2">

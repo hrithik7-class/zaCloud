@@ -1,7 +1,12 @@
 import React from 'react'
 import { ChevronDown, ArrowRight } from 'lucide-react'
 
-const Form = ({ currentView }:any) => {
+interface FromProps {
+  currentView: string
+}
+
+
+const Form: React.FC<FromProps> = ({ currentView })=> {
   return (
     <div className={`
       xl:w-1/2 bg-gray-50 h-[calc(100vh-200px)] lg:h-[calc(100vh-220px)] overflow-y-auto order-2
@@ -11,7 +16,7 @@ const Form = ({ currentView }:any) => {
         <div className="max-w-full lg:max-w-md xl:max-w-lg mx-auto">
           <div className="mb-6 lg:mb-8">
             <h2 className="text-xl lg:text-2xl font-bold text-gray-800 mb-2">
-              Let's define your <span className="text-orange-400">targets</span>
+              Let&apos;s define your <span className="text-orange-400">targets</span>
             </h2>
             <p className="text-gray-600 text-xs lg:text-sm">
               Focus on the most relevant fields to shape your ICP — all fields are optional

@@ -208,7 +208,7 @@ const Dashboard = () => {
             
             <div className="mt-4 overflow-x-auto">
               <div className="flex items-center justify-center space-x-3 lg:space-x-8 min-w-max px-2">
-                {progressSteps.map((step, index) => (
+                {progressSteps.map((step) => (
                   <div key={step.id} className="flex items-center">
                     <div className="flex flex-col items-center">
                       <button
