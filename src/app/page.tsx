@@ -1,5 +1,5 @@
 'use client'
-
+import { Toaster } from 'react-hot-toast';
 import React, { useState } from 'react'
 import {
   Home,
@@ -38,6 +38,11 @@ const Dashboard: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
   const [currentView, setCurrentView] = useState<string>('chat')
   const [activeStep, setActiveStep] = useState<string>('who')
+   const [submittedData, setSubmittedData] = useState("");
+  const handleFormSubmit = (formData: any) => {
+    setSubmittedData(formData);
+    console.log("Received form data in Dashboard:", formData);
+  }
 
   // Main navigation items (Home to Mail)
   const mainNavigationItems: NavigationItem[] = [
@@ -101,6 +106,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
+    
     <div className="min-h-screen bg-gray-100 flex flex-col lg:flex-row">
       {isSidebarOpen && (
         <div
@@ -235,10 +241,12 @@ const Dashboard: React.FC = () => {
 
           <div className="flex-1 flex flex-col xl:flex-row">
             <Chat currentView={currentView} />
-            <Form currentView={currentView} />
+            <Form currentView={currentView}  onFormSubmit={handleFormSubmit}/>
           </div>
         </div>
       </div>
+      <Toaster position="top-right" />
+
     </div>
   )
 }
