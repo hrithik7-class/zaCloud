@@ -33,15 +33,25 @@ interface ProgressStep {
   label: string
 }
 
+
+
+
 const Dashboard: React.FC = () => {
   const [activeNav, setActiveNav] = useState<string>('home')
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
   const [currentView, setCurrentView] = useState<string>('chat')
   const [activeStep, setActiveStep] = useState<string>('who')
-   const [submittedData, setSubmittedData] = useState("");
-  const handleFormSubmit = (formData: any) => {
-    setSubmittedData(formData);
-    console.log("Received form data in Dashboard:", formData);
+  const [formData, setFormData] = useState({
+    companyHeadcount: '',
+    companyLocation: '',
+    revenueRange: '',
+    department: ''
+  })
+
+  // Form submit handler (optional if submit handled fully in Form)
+  const handleFormSubmit = (data: typeof formData) => {
+    console.log('Form data submitted:', data)
+    // You can do extra work here on submit, e.g. API call
   }
 
   // Main navigation items (Home to Mail)
@@ -124,7 +134,8 @@ const Dashboard: React.FC = () => {
       `}>
         <div className="lg:hidden flex items-center justify-between p-4 border-b border-gray-100">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-lg 
+            flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
             <span className="font-semibold text-gray-800">Dashboard</span>
@@ -139,7 +150,8 @@ const Dashboard: React.FC = () => {
 
         <div className="flex flex-col h-full py-4 lg:py-6">
           <div className="hidden lg:flex justify-center mb-4">
-            <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-lg 
+            flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
           </div>
@@ -172,18 +184,21 @@ const Dashboard: React.FC = () => {
 
       <div className="flex-1 p-4 lg:p-6">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 h-full flex flex-col">
-          <div className="bg-white border-b border-gray-100 px-4 lg:px-6 xl:px-8 py-3 lg:py-4 flex-shrink-0 rounded-t-2xl">
+          <div className="bg-white border-b border-gray-100 px-4 lg:px-6 xl:px-8 py-3 
+          lg:py-4 flex-shrink-0 rounded-t-2xl">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3 flex-1">
                 <button
                   onClick={() => setIsSidebarOpen(true)}
-                  className="lg:hidden p-2 -ml-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-50"
+                  className="lg:hidden p-2 -ml-2 text-gray-400 hover:text-gray-600 rounded-lg 
+                  hover:bg-gray-50"
                 >
                   <Menu className="w-5 h-5" />
                 </button>
 
                 <div className="flex items-center space-x-2">
-                  <span className="text-base lg:text-xl font-semibold text-gray-800 truncate">Untitled List</span>
+                  <span className="text-base lg:text-xl font-semibold text-gray-800 
+                  truncate">Untitled List</span>
                   <Edit className="w-4 h-4 text-gray-400 flex-shrink-0" />
                 </div>
               </div>
@@ -241,7 +256,10 @@ const Dashboard: React.FC = () => {
 
           <div className="flex-1 flex flex-col xl:flex-row">
             <Chat currentView={currentView} />
-            <Form currentView={currentView}  onFormSubmit={handleFormSubmit}/>
+            <Form currentView={currentView}
+        data={formData}
+        setData={setFormData}
+        onFormSubmit={handleFormSubmit}/>
           </div>
         </div>
       </div>

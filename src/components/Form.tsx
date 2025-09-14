@@ -1,34 +1,37 @@
 "use client"
-import React, { useState } from 'react'
+import React from 'react'
 import { ChevronDown, ArrowRight } from 'lucide-react'
 import toast from 'react-hot-toast'
 
-const initialData = {
-  companyHeadcount: '',
-  companyLocation: '',
-  revenueRange: '',
-  department: ''
-};
+// Define the shape of form data for typing
+interface FormData {
+  companyHeadcount: string;
+  companyLocation: string;
+  revenueRange: string;
+  department: string;
+}
 
 interface FormProps {
   currentView: string;
-  onFormSubmit?: (data: typeof initialData) => void;
+  data: FormData;                  // State lifted here
+  setData: React.Dispatch<React.SetStateAction<FormData>>;
+  onFormSubmit?: (data: FormData) => void;
 }
 
-const Form: React.FC<FormProps> = ({ currentView, onFormSubmit }) => {
-  const [data, setData] = useState(initialData);
-
+const Form: React.FC<FormProps> = ({ currentView, data, setData, onFormSubmit }) => {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!(data.companyHeadcount && data.companyLocation && data.revenueRange && data.department)) {
-      toast.error("Please fill the field.");
-      return;
-    } else {
-      console.log(data);
-      toast.success("Form submitted.");
-      onFormSubmit?.(data); // Pass data to parent
-      setData(initialData); // Reset form
-    }
+    e.preventDefault()
+    console.log(data)
+    toast.success("Form submitted! Check console for data.")
+    if (onFormSubmit) onFormSubmit(data)
+
+    // Reset form data after submit
+    setData({
+      companyHeadcount: '',
+      companyLocation: '',
+      revenueRange: '',
+      department: ''
+    })
   }
 
   return (
